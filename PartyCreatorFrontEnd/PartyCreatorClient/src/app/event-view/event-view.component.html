@@ -1,0 +1,314 @@
+<header></header>
+<body>
+  <div class="mainLayout">
+    <div class="details">
+      <div *ngIf="eventDetails" class="Details">
+        <!-- tytul -->
+        <div *ngIf="editField !== 'title'; else editForm">
+          <h1>
+            {{ eventDetails.title }}
+            <i
+              class="fa fa-pencil"
+              *ngIf="editMode"
+              (click)="editField = 'title'"
+            ></i>
+          </h1>
+        </div>
+
+        <ng-template #editForm>
+          <form (ngSubmit)="saveChanges()">
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Nazwa wydarzenia</mat-label>
+              <input
+                matInput
+                [(ngModel)]="eventDetails.title"
+                #title="ngModel"
+                name="name"
+                maxlength="36"
+                minlength="3"
+                required
+              />
+              <span>{{ title.value.length }}/36</span>
+              <!-- Wiadomość o błędzie -->
+              <mat-error *ngIf="title.errors?.['minlength']">
+                Nazwa musi mieć co najmniej 3 znaki.
+              </mat-error>
+            </mat-form-field>
+            <button mat-raised-button [disabled]="title.invalid">Zapisz</button>
+          </form>
+        </ng-template>
+
+        <!-- ogranizator -->
+        <p style="font-weight: bold">
+          Organizator: {{ eventDetails.creatorFirstName }}
+          {{ eventDetails.creatorLastName }}
+        </p>
+
+        <!-- opis -->
+        <div *ngIf="editField !== 'description'; else editFormDescription">
+          <p>
+            {{ eventDetails.description }}
+            <i
+              class="fa fa-pencil"
+              *ngIf="editMode"
+              (click)="editField = 'description'"
+            ></i>
+          </p>
+        </div>
+
+        <ng-template #editFormDescription>
+          <form (ngSubmit)="saveChanges()">
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Opis</mat-label>
+              <textarea
+                matInput
+                [(ngModel)]="eventDetails.description"
+                #description
+                name="description"
+                rows="5"
+                maxlength="100"
+                style="resize: none"
+              ></textarea>
+              <span>{{ description.value.length }}/100</span>
+            </mat-form-field>
+            <button mat-raised-button (click)="saveChanges()">Zapisz</button>
+          </form>
+        </ng-template>
+
+        <!-- adres -->
+        <div *ngIf="editField !== 'address'; else editFormAddress">
+          <p class="eventAddress">
+            <fa-icon [icon]="faLocationDot" style="color: white" size="2xl">
+            </fa-icon>
+            {{ eventDetails.address }}
+            <i
+              class="fa fa-pencil"
+              *ngIf="editMode"
+              (click)="editField = 'address'"
+            ></i>
+          </p>
+        </div>
+
+        <ng-template #editFormAddress>
+          <form (ngSubmit)="saveChanges()">
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Adres</mat-label>
+              <input
+                matInput
+                [(ngModel)]="eventDetails.address"
+                #address="ngModel"
+                name="address"
+                minlength="3"
+                required
+              />
+              <!-- Wiadomość o błędzie -->
+              <mat-error *ngIf="address.errors?.['minlength']">
+                Adres musi mieć co najmniej 3 znaki.
+              </mat-error>
+            </mat-form-field>
+            <button mat-raised-button [disabled]="address.invalid">
+              Zapisz
+            </button>
+          </form>
+        </ng-template>
+
+        <!-- miasto -->
+        <div *ngIf="editField !== 'city'; else editFormCity">
+          <p>
+            {{ eventDetails.city }}
+            <i
+              class="fa fa-pencil"
+              *ngIf="editMode"
+              (click)="editField = 'city'"
+            ></i>
+          </p>
+        </div>
+
+        <ng-template #editFormCity>
+          <form (ngSubmit)="saveChanges()">
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Miasto</mat-label>
+              <input
+                matInput
+                [(ngModel)]="eventDetails.city"
+                #city="ngModel"
+                name="city"
+                minlength="3"
+                required
+              />
+
+              <mat-error *ngIf="city.errors?.['minlength']">
+                Nazwa miasta musi mieć co najmniej 3 znaki.
+              </mat-error>
+            </mat-form-field>
+            <button mat-raised-button [disabled]="city.invalid">Zapisz</button>
+          </form>
+        </ng-template>
+
+        <div>
+          <p (click)="openMapModal()" style="cursor: pointer">
+            <mat-icon
+              style="font-size: 28px; margin-bottom: -2px; margin-left: 9px"
+              >map</mat-icon
+            >
+            Otwórz mapę
+          </p>
+        </div>
+
+        <div *ngIf="editField !== 'dateTime'; else editFormDateTime">
+          <p>
+            <fa-icon [icon]="faClock" style="color: white" size="2xl">
+            </fa-icon>
+            {{ eventDetails.dateTime | date : "HH:mm" }}
+            <i
+              class="fa fa-pencil"
+              *ngIf="editMode"
+              (click)="editField = 'dateTime'"
+            ></i>
+          </p>
+        </div>
+
+        <ng-template #editFormDateTime>
+          <form (ngSubmit)="saveChanges()">
+            <div>
+              <label>Godzina:</label>
+              <input [(ngModel)]="editedTime" name="editedTime" type="time" />
+            </div>
+            <button (click)="saveChanges()">Zapisz</button>
+          </form>
+        </ng-template>
+
+        <div *ngIf="editField !== 'dateDate'; else editFormDateDate">
+          <p>
+            <fa-icon [icon]="faCalendar" style="color: white" size="2xl">
+            </fa-icon>
+            {{ eventDetails.dateTime | date : "dd-MM-yyyy" }}
+            <i
+              class="fa fa-pencil"
+              *ngIf="editMode"
+              (click)="editField = 'dateDate'"
+            ></i>
+          </p>
+        </div>
+
+        <ng-template #editFormDateDate>
+          <form (ngSubmit)="saveChanges()">
+            <div>
+              <label>Godzina:</label>
+              <input [(ngModel)]="editedDate" name="editedDate" type="date" />
+            </div>
+            <button (click)="saveChanges()">Zapisz</button>
+          </form>
+        </ng-template>
+      </div>
+    </div>
+    <!--<div class="editDetails2">
+      <button
+        *ngIf="!editMode && userRole.role == 'Admin'"
+        (click)="editMode = true"
+      >
+        Edytuj wydarzenie
+      </button>
+    </div>-->
+    <div class="editDetails">
+      <button
+        *ngIf="!editMode && userRole.role == 'Admin'"
+        (click)="editMode = true"
+      >
+        Edytuj wydarzenie
+      </button>
+      <button
+        *ngIf="editMode && userRole.role == 'Admin'"
+        (click)="cancelEdit()"
+      >
+        Opuść edycję wydarzenia
+      </button>
+      <br />
+
+      <button
+        *ngIf="editMode && userRole.role == 'Admin'"
+        (click)="editMode = true"
+        class="btn btn-danger"
+        style="background-color: red"
+        (click)="deleteEvent()"
+      >
+        Usuń wydarzenie
+      </button>
+      <div class="uploadFile2" *ngIf="!editMode">
+        <p-fileUpload
+          #fileUploader
+          name="file"
+          mode="basic"
+          chooseLabel="Dodaj zdjęcie"
+          accept="image/*"
+          [maxFileSize]="10000000"
+          [customUpload]="true"
+          (uploadHandler)="uploadFile($event)"
+          [auto]="true"
+        >
+        </p-fileUpload>
+      </div>
+    </div>
+
+    <div class="chat">
+      <app-chat [eventId]="eventId" [userId]="userRole.id"></app-chat>
+    </div>
+    <div class="photos">
+      <app-event-gallery
+        [eventId]="eventId"
+        [images]="images"
+        [numVisible]="numVisible"
+        [imagesNum]="imagesNum"
+        [userRole]="userRole"
+      ></app-event-gallery>
+    </div>
+    <div class="inviteList">
+      <h3>Lista uczestników</h3>
+      <div
+        class="guests"
+        *ngFor="let user of guestsUsers"
+        (click)="goToUserProfile(user.id)"
+        style="cursor: pointer"
+      >
+        {{ user.firstName }} {{ user.lastName }}
+      </div>
+      <div
+        class="invited"
+        *ngFor="let user of invitesUsers"
+        (click)="goToUserProfile(user.id)"
+        style="cursor: pointer"
+      >
+        {{ user.firstName }} {{ user.lastName }}
+      </div>
+      <div>
+        <button *ngIf="userRole.role == 'Admin'" (click)="openDialog()">
+          Zarządzaj uczestnikami
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="extraFunctions">
+    <div
+      class="thingsToBring"
+      *ngIf="eventDetails.shoppingListTitle === 'Title'"
+    >
+      <app-shopping-list [eventId]="eventId"></app-shopping-list>
+    </div>
+
+    <div class="spotifyPlaylist" *ngIf="eventDetails.playlistTitle === 'Title'">
+      <app-spotify [eventId]="eventId" [eventTitle]="eventTitle"></app-spotify>
+    </div>
+    <div class="shareReceipt" *ngIf="eventDetails.receiptTitle === 'Title'">
+      <app-split-bill [eventId]="eventId"></app-split-bill>
+    </div>
+    <div class="surveys">
+      <app-survey [eventId]="eventId" [userId]="userRole.id"></app-survey>
+    </div>
+
+    <div class="addNewContent" *ngIf="userRole.role === 'Admin'">
+      <button mat-icon-button (click)="openAddContentModal()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</body>

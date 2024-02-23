@@ -1,0 +1,122 @@
+body,
+html {
+  background-color: #2d2d2d;
+  min-height: 100%;
+}
+
+.my-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+
+.card {
+  background-color: #3d3d3d;
+  border-radius: 20px;
+  width: 60vw;
+  min-height: 70vh;
+  display: flex;
+  color: #ffffff99 !important;
+}
+
+::ng-deep .profileTab .mat-mdc-tab-body-wrapper {
+  height: 70vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 1600px) {
+  .card {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 800px) {
+  .card {
+    border: none;
+    box-shadow: none;
+    border-radius: 0%;
+    height: 100vh;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding-top: 4em;
+  }
+}
+
+.parent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding-top: 2em;
+  flex-direction: column;
+}
+
+.profile-picture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.profile-picture img {
+  width: 200px;
+  height: 200px;
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 20px;
+}
+
+.dodajkontakt {
+  margin-top: auto;
+  margin-bottom: 2em;
+  margin-left: 2em;
+  margin-right: 2em;
+  border-radius: 10px;
+  min-height: 40px;
+}
+
+table.blueTable {
+  width: 80%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.blueTable td,
+table.blueTable th {
+  border: 0;
+  padding: 1em 1rem;
+}
+table.blueTable td:first-child,
+table.blueTable th:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+table.blueTable td:last-child,
+table.blueTable th:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+table.blueTable tr:nth-child(odd) {
+  background: #373737;
+}
+
+@media (max-width: 800px) {
+  .parent {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-picture img {
+    width: 150px;
+    height: 150px;
+  }
+
+  ::ng-deep .mat-mdc-tab-group {
+    width: 100%;
+  }
+}

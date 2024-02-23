@@ -1,0 +1,223 @@
+<div style="background: #2d2d2d; color: white">
+  <div class="row" style="width: 100%; margin: 0px">
+    <div class="col-9" style="padding: 0px">
+      <mat-tab-group
+        mat-stretch-tabs="true"
+        style="padding: 0px; margin: 0px; height: 100%"
+      >
+        <mat-tab label="Szukaj" style="height: 100%">
+          <div style="background-color: #3d3d3d; height: 700px; padding: 10px">
+            <form
+              (ngSubmit)="onSubmit()"
+              [formGroup]="userSearch"
+              class="eventForm"
+            >
+              <h2 class="text-center" style="padding-bottom: 30px">
+                Dodaj użytkowników do wydarzenia
+              </h2>
+              <div class="row">
+                <div class="col-10">
+                  <mat-form-field appearance="outline" style="width: 100%">
+                    <mat-label>Wpisz email</mat-label>
+                    <input
+                      matInput
+                      #search
+                      maxlength="30"
+                      formControlName="search"
+                      required
+                    />
+                    <mat-hint align="end"
+                      >{{ search.value.length }}/30</mat-hint
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="col-2">
+                  <button
+                    type="submit"
+                    [disabled]="!userSearch.valid"
+                    color="primary"
+                    style="color: white; height: 56px"
+                    mat-raised-button
+                  >
+                    Szukaj
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="row" style="height: 50px">
+              <div class="col d-flex align-items-center justify-content-center">
+                Nazwa
+              </div>
+              <div class="col d-flex align-items-center justify-content-center">
+                Email
+              </div>
+              <div class="col d-flex align-items-center justify-content-center">
+                Akcja
+              </div>
+            </div>
+            <div
+              class="row"
+              style="max-height: 470px; height: fit-content; overflow-y: auto"
+            >
+              <div *ngFor="let user of users" class="row user-row">
+                <div
+                  class="col d-flex align-items-center justify-content-center"
+                >
+                  {{ user.name }}
+                </div>
+                <div
+                  class="col d-flex align-items-center justify-content-center"
+                >
+                  {{ user.email }}
+                </div>
+                <div
+                  class="col d-flex align-items-center justify-content-center"
+                >
+                  <button
+                    (click)="inviteToEvent(user)"
+                    mat-raised-button
+                    color="accent"
+                  >
+                    Dodaj
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Lista Kontaktów">
+          <div style="background-color: #3d3d3d; height: 700px; padding: 10px">
+            <h2 class="text-center" style="padding-bottom: 30px">
+              Dodaj użytkowników do wydarzenia
+            </h2>
+            <h3 class="text-center" style="padding-bottom: 30px">
+              Twoja Lista Kontaktów
+            </h3>
+            <div class="row" style="height: 50px">
+              <div class="col d-flex align-items-center justify-content-center">
+                Nazwa
+              </div>
+              <div class="col d-flex align-items-center justify-content-center">
+                Email
+              </div>
+              <div class="col d-flex align-items-center justify-content-center">
+                Akcja
+              </div>
+            </div>
+            <div
+              class="row"
+              style="max-height: 470px; height: fit-content; overflow-y: auto"
+            >
+              <div *ngFor="let contact of contacts" class="row user-row">
+                <div
+                  class="col d-flex align-items-center justify-content-center"
+                >
+                  {{ contact.name }}
+                </div>
+                <div
+                  class="col d-flex align-items-center justify-content-center"
+                >
+                  {{ contact.email }}
+                </div>
+                <div
+                  class="col d-flex align-items-center justify-content-center"
+                >
+                  <button
+                    (click)="inviteToEventEmail(contact)"
+                    mat-raised-button
+                    color="accent"
+                  >
+                    Dodaj
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    <div class="col-3" style="padding: 0px">
+      <div
+        class="d-flex align-items-center justify-content-center"
+        style="height: 48px"
+      >
+        Lista uczestników
+      </div>
+      <div style="background-color: #3d3d3d; height: 700px; padding: 5px">
+        <div
+          class="row"
+          style="height: 350px; margin: 0px; background-color: #3d3d3d"
+        >
+          <div
+            class="container"
+            style="
+              max-height: 350px;
+              height: fit-content;
+              width: 100%;
+              overflow-y: auto;
+            "
+          >
+            <div
+              class="row d-flex align-items-center justify-content-center"
+              style="height: 40px; padding-bottom: 15px; font-weight: bold"
+            >
+              Uczestnicy wydarzenia
+            </div>
+            <div
+              class="row d-flex align-items-center justify-content-center user"
+              *ngFor="let guest of data.guests"
+              matTooltip="Usuń z wydarzenia"
+              (click)="deleteGuest(guest.id)"
+            >
+              {{ guest.firstName + " " + guest.lastName }}
+            </div>
+          </div>
+        </div>
+        <div
+          class="row"
+          style="height: 350px; margin: 0px; background-color: #3d3d3d"
+        >
+          <div
+            class="container"
+            style="
+              max-height: 350px;
+              height: fit-content;
+              width: 100%;
+              overflow-y: auto;
+            "
+          >
+            <div
+              class="row d-flex align-items-center justify-content-center"
+              style="height: 40px; padding-bottom: 15px; font-weight: bold"
+            >
+              Osoby zaproszone
+            </div>
+            <div
+              class="row d-flex align-items-center justify-content-center user"
+              *ngFor="let invite of data.invites"
+              matTooltip="Anuluj zaproszenie"
+              (click)="deleteInvitedOld(invite.id)"
+            >
+              {{ invite.firstName + " " + invite.lastName }}
+            </div>
+            <div
+              class="row d-flex align-items-center justify-content-center user"
+              *ngFor="let invitedUser of invitedUsers"
+              matTooltip="Anuluj zaproszenie"
+              (click)="deleteInvitedNew(invitedUser.userId)"
+            >
+              {{ invitedUser.name }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="background-color: #3d3d3d; padding: 10px">
+    <mat-dialog-actions align="end">
+      <button mat-raised-button mat-dialog-close color="primary">
+        Zamknij
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>

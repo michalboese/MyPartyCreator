@@ -1,0 +1,79 @@
+<div class="container">
+  <p class="title"> <mat-icon>receipt</mat-icon> Dzielenie się rachunkiem <mat-icon>receipt</mat-icon></p>
+
+  <form *ngIf="userRole.role === 'Admin'"
+    (ngSubmit)="onSubmit()" 
+     #myForm="ngForm"
+     class="mb-3 addItems"
+    >
+      
+     <div class="form-group">
+        <mat-form-field appearance="outline" class="mb-0"  [ngStyle]="{'width.px': 400}" >
+          <mat-label>Nazwa przedmiotu</mat-label>
+          <input matInput [(ngModel)]="receiptItem.name" name="name" required>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="mb-0" [ngStyle]="{'width.px':98}">
+          <mat-label>Ilość</mat-label>
+          <input matInput [(ngModel)]="receiptItem.quantity" name="quantity" type="number" required min="1" pattern="^[1-9]\d*$">
+          </mat-form-field>
+      </div>
+      
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="mb-0" [ngStyle]="{'width.px': 160}" required>
+          <mat-label>Cena (za całość)</mat-label>
+          <input matInput [(ngModel)]="receiptItem.price" name="price" type="number">
+        </mat-form-field>
+      </div>
+  
+      <button type="submit" 
+        mat-raised-button class="buttonAdd"
+         [ngStyle]="{'height.px': 58, 'width.px': 200, 'margin-bottom.px': 21}"
+         [style.background-color]="myForm.valid ? ' var(--special-primary)' : 'grey'"
+
+         [disabled]="!myForm.form.valid">
+         Dodaj przedmiot
+       </button>        
+      </form>
+  
+  
+      <div [ngStyle]="{
+        'max-height': userRole.role === 'Admin' ? '207px' : '316px', 
+        'min-height': userRole.role === 'Admin' ? '207px' : '316px', 
+        'overflow-y': 'auto'
+      }">
+        <div class="card-body">
+          <table class="items">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Ilość</th>
+                <th scope="col">Cena</th>
+                <th scope="col"></th>
+
+              </tr>
+            </thead>
+          <tbody>
+            <tr *ngFor="let item of receiptItems">
+              <td>{{ item.name }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.price }}zł</td> 
+              <td>
+                <button mat-icon-button color="warn"  (click)="removeItem(item.id)" *ngIf="userRole.role === 'Admin'">
+                  <mat-icon>clear</mat-icon>
+
+                </button>
+              </td> 
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+</div>
+<div class="informations">
+  <p>Łączna kwota wydana przez organizatora: <b>{{ getTotalPrice() }}zł</b></p>
+  <p>Uczestnicy powinni oddać po: <b>{{ getAmountPerPerson() }}zł</b></p>
+</div>
+  

@@ -1,0 +1,52 @@
+body,
+html {
+  background-color: var(--background-color);
+  min-height: 100%;
+}
+
+.my-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+
+.card {
+  background-color: var(--background-main-color);
+  border-radius: 20px;
+  width: 60vw;
+  min-height: 70vh;
+  display: flex;
+  color: var(--card-color);
+}
+
+::ng-deep .profileTab .mat-mdc-tab-body-wrapper {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.tab-label-text{
+  color:var(--label-text-color);
+}
+@media (max-width: 1600px) {
+  .card {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 800px) {
+  .card {
+    border: none;
+    box-shadow: none;
+    border-radius: 0%;
+    height: 100vh;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding-top: 4em;
+  }
+
+  .tab-label-text {
+    display: none;
+  }
+}

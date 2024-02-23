@@ -1,0 +1,97 @@
+@use "node_modules/@angular/material" as mat;
+
+@include mat.core();
+
+a {
+  color: var(--h1-color)!important;
+}
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+  color: white;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+}
+
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+
+.navbar-nav .nav-item.link-active a {
+  color: white !important;
+  font-weight: bolder;
+  text-decoration-line: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 19px;
+}
+
+.navbar {
+  background-color: var(--backgroundNavbar) ;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+  box-shadow: inset;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.nav-link.text-white:hover {
+  cursor: pointer;
+}
+
+.nav-link.text-white {
+  margin-left: 20px;
+}
+
+
+
+@media (min-width: 800px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.notification {
+  width: 100%;
+  height: 60px;
+  background-color: var(--notification-background-color);
+  margin-bottom: 10px;
+  padding: 5px;
+  overflow: hidden;
+  color: var(--h1-color);
+  border-radius: 5px;
+}
+.notification:hover {
+  cursor: pointer;
+}
+
+.navbar-nav .nav-item.link-active a {
+  color: var(--h1-color) !important;
+  font-weight: bolder;
+  text-decoration-line: none;
+}
+
+.notificationMenu {
+  $special-primary: mat.define-palette(mat.$indigo-palette, 600, 300, 800);
+  $special-accent: mat.define-palette(mat.$green-palette, 600, 200, 900);
+  $special-warn: mat.define-palette(mat.$red-palette, 500, 200, 900);
+  $special-theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $special-primary,
+        accent: $special-accent,
+        warn: $special-warn,
+      ),
+      typography: mat.define-typography-config(),
+      density: 0,
+    )
+  );
+  @include mat.all-component-themes($special-theme);
+}
+
+

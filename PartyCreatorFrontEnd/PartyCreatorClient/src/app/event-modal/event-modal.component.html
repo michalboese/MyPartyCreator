@@ -1,0 +1,183 @@
+<div style="background: #2d2d2d">
+  <form (ngSubmit)="onSubmit()" [formGroup]="eventOptions" class="eventForm">
+    <h1 class="text-center" style="padding-bottom: 40px">
+      Tworzenie Wydarzenia
+    </h1>
+    <div class="row row-class">
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>Tytuł</mat-label>
+        <input
+          matInput
+          #title
+          maxlength="50"
+          formControlName="title"
+          minlength="3"
+          required
+        />
+        <mat-hint align="end">{{ title.value.length }}/50</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="row row-class">
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>Opis</mat-label>
+        <textarea
+          matInput
+          #description
+          maxlength="100"
+          formControlName="description"
+          required
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="3"
+          cdkAutosizeMaxRows="6"
+        ></textarea>
+        
+        <mat-hint align="end">{{ description.value.length }}/100</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="row row-class">
+      <div class="row row-class">
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>Adres</mat-label>
+          <input
+            matInput
+            #address
+            maxlength="30"
+            formControlName="address"
+            minlength="3"
+            required
+          />
+          <mat-hint align="end">{{ address.value.length }}/30</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="row row-class">
+        <div class="col">
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Kraj</mat-label>
+            <input
+              matInput
+              #country
+              maxlength="30"
+              formControlName="country"
+              minlength="3"
+              required
+            />
+            <mat-hint align="end">{{ country.value.length }}/30</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Miasto</mat-label>
+            <input
+              matInput
+              #city
+              maxlength="30"
+              formControlName="city"
+              minlength="3"
+              required
+            />
+            <mat-hint align="end">{{ city.value.length }}/30</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-class">
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>Godzina</mat-label>
+          <input
+            matInput
+            formControlName="time"
+            maxlength="5"
+            required
+            pattern="^(?:[01]\d|2[0-3]):[0-5]\d$"
+          />
+          <mat-hint>Format hh:mm</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col col-class">
+        <mat-form-field
+          appearance="outline"
+          style="width: 100%"
+          class="mobile-calendar"
+        >
+          <mat-label style="color: #a6a6a6">Data</mat-label>
+          <input
+            matInput
+            [min]="minDate"
+            readonly
+            [matDatepicker]="picker1"
+            formControlName="dateTime"
+            style="color: white"
+          />
+          <mat-hint>Format DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field
+          appearance="outline"
+          style="width: 100%"
+          class="desktop-calendar"
+        >
+          <mat-label style="color: #a6a6a6">Data</mat-label>
+          <input
+            matInput
+            [min]="minDate"
+            readonly
+            [matDatepicker]="picker2"
+            formControlName="dateTime"
+            style="color: white"
+          />
+          <mat-hint>Format DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row row-class-opcje">
+      <div class="col col-slider">
+        <mat-slide-toggle formControlName="playlist" color="primary"
+          >Dodaj Playliste Spotify</mat-slide-toggle
+        >
+      </div>
+      <div class="row row-slider"></div>
+      <div class="col col-slider">
+        <mat-slide-toggle formControlName="receipt" color="primary"
+          >Dodaj Dzielenie Się Rachunkiem</mat-slide-toggle
+        >
+      </div>
+      <div class="row row-slider"></div>
+      <div class="col col-slider">
+        <mat-slide-toggle formControlName="shoppingLis" color="primary"
+          >Dodaj Liste Zakupów</mat-slide-toggle
+        >
+      </div>
+    </div>
+
+    <div class="row row-class">
+      <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close (click)="close()">
+          Zamknij
+        </button>
+        <button
+          type="submit"
+          mat-dialog-close
+          [disabled]="!eventOptions.valid"
+          color="primary"
+          style="color: white"
+          mat-raised-button
+        >
+          Zapisz
+        </button>
+      </mat-dialog-actions>
+    </div>
+  </form>
+</div>

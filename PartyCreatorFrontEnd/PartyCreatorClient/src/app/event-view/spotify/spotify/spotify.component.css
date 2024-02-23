@@ -1,0 +1,131 @@
+.container {
+  background-color: var(--spotify-background-color);
+  border-radius: 15px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.title {
+  text-align: center;
+  background-color: var(--special-accent);
+  padding: 10px;
+  color: black;
+  font-size: 20px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  margin: 0;
+}
+
+.playlistContainer {
+  display: flex;
+  flex-direction: column;
+
+  height: 325px;
+  overflow: auto;
+}
+
+.spotify-login-button {
+  display: inline-block;
+  background-color: #1db954;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  align-self: center;
+  margin-top: 15%;
+  text-align: center;
+  width: 250px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-close {
+  color: #1db954;
+}
+
+.modal-content {
+  color: #1db954;
+  background-color: #2d2d2d;
+}
+
+.spotify-login-button:hover {
+  background-color: #1ed760;
+}
+
+.modal-header {
+  border-bottom: 1px solid #000;
+}
+
+.spotify-modal {
+  color: #1db954;
+  background-color: #2d2d2d;
+  border-radius: 10px;
+}
+
+.spotify-input {
+  background-color: #282828;
+  color: #fff;
+  border: none;
+}
+
+.spotify-album-cover {
+  height: 80px;
+}
+
+.spotify-button {
+  background-color: #1db954;
+  border: none;
+}
+
+.spotify-search-button {
+  align-self: flex-end;
+  width: 100%;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.spotify-playlist-button {
+  background-color: var(--special-primary);
+  color: aliceblue;
+  align-self: flex-end;
+  width: 100%;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.spotify-add-button {
+  margin-right: 20px;
+}
+
+.playlist-songs {
+  width: 100%;
+  margin: 0;
+  padding: 28px;
+}
+
+.track-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  margin-bottom: 20px; /* Dodaj margines na dole */
+}
+
+.track-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  gap: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,97 @@
+<header></header>
+<body>
+  <div class="card">
+    <mat-tab-group animationDuration="0ms">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>event_note</mat-icon>
+          <span class="tab-label-text">&nbsp;Nadchodzące wydarzenia</span>
+        </ng-template>
+        <h1>Nadchodzące wydarzenia</h1>
+        <div class="container2">
+          <div *ngFor="let event of upcomingEvents" class="Event">
+            <h2>{{ event.title }}</h2>
+            <p>
+              Organizator: {{ event.creatorFirstName }}
+              {{ event.creatorLastName }}
+            </p>
+            <p>Godzina: {{ event.dateTime | date : "H:mm" }}</p>
+            <p>Data: {{ event.dateTime | date : "d/M/yy" }}</p>
+            <button
+              type="button"
+              class="btn btn-light btnToDetails"
+              [routerLink]="['/wydarzenie', event.id]"
+            >
+              <fa-icon [icon]="faArrowRight" size="lg"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>person</mat-icon>
+          <span class="tab-label-text">&nbsp;Twoje wydarzenia</span>
+        </ng-template>
+        <h1>Twoje wydarzenia</h1>
+        <div class="container2">
+          <div *ngFor="let myEvent of myEvents" class="Event">
+            <h2>{{ myEvent.title }}</h2>
+            <p>
+              Organizator: {{ myEvent.creatorFirstName }}
+              {{ myEvent.creatorLastName }}
+            </p>
+            <p>Godzina: {{ myEvent.dateTime | date : "H:mm" }}</p>
+            <p>Data: {{ myEvent.dateTime | date : "d/M/yy" }}</p>
+            <button
+              type="button"
+              class="btn btn-light btnToDetails"
+              [routerLink]="['/wydarzenie', myEvent.id]"
+            >
+              <fa-icon [icon]="faArrowRight" size="lg"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>event_busy</mat-icon>
+          <span class="tab-label-text">&nbsp;Zakończone wydarzenia</span>
+        </ng-template>
+        <h1>Zakończone wydarzenia</h1>
+        <div class="container2">
+          <div *ngFor="let event of finishedEvents" class="Event">
+            <h2>{{ event.title }}</h2>
+            <p>
+              Organizator: {{ event.creatorFirstName }}
+              {{ event.creatorLastName }}
+            </p>
+            <p>Godzina: {{ event.dateTime | date : "H:mm" }}</p>
+            <p>Data: {{ event.dateTime | date : "d/M/yy" }}</p>
+            <button
+              type="button"
+              class="btn btn-light btnToDetails"
+              [routerLink]="['/wydarzenie', event.id]"
+            >
+              <fa-icon [icon]="faArrowRight" size="lg"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>calendar_today</mat-icon>
+          <span class="tab-label-text">&nbsp;Kalendarz</span>
+        </ng-template>
+        <app-main-calendar
+          [creatorEvents]="myEvents"
+          [upcomingEvents]="upcomingEvents"
+          [finishedEvents]="finishedEvents"
+        ></app-main-calendar>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <button (click)="openDialog()" class="buttonCreateEvent">
+    Nowe wydarzenie
+  </button>
+</body>

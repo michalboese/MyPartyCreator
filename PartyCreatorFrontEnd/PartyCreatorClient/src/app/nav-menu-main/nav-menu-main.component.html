@@ -1,0 +1,210 @@
+<header>
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['']"><img src="/assets/PartyCreatorSmallLogo.png" alt="Logo" width="90"></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-label="Toggle navigation"
+        [attr.aria-expanded]="isExpanded"
+        (click)="toggle()"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+        [ngClass]="{ show: isExpanded }"
+      >
+        <ul class="navbar-nav flex-grow">
+          <li
+            *ngIf="auth.isLoggedInValue"
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a
+              class="nav-link text-white menu-link"
+              [routerLink]="['/wydarzenia']"
+              >Wydarzenia</a
+            >
+          </li>
+
+          <li *ngIf="auth.isLoggedInValue" class="nav-item">
+            <app-user-search></app-user-search>
+          </li>
+
+          <li *ngIf="auth.isLoggedInValue" class="nav-item">
+            <button
+              [matMenuTriggerFor]="Menu"
+              class="nav-link text-white"
+              style="height: 40px"
+            >
+              <mat-icon
+                *ngIf="countRead() != 0; else elseBlock"
+                matBadge="{{ countRead() }}"
+                aria-hidden="false"
+                matBadgeColor="warn"
+                matBadgeSize="medium"
+                >notifications</mat-icon
+              >
+              <ng-template #elseBlock>
+                <mat-icon>notifications</mat-icon>
+              </ng-template>
+            </button>
+          </li>
+
+          <li
+            *ngIf="auth.isLoggedInValue"
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+          >
+            <a class="nav-link text-white menu-link" [routerLink]="['/profil']"
+              >Profil</a
+            >
+          </li>
+          <li class="nav-item">
+            <button class="nav-link text-white" (click)="onThemeSwitchChange()">
+              <mat-icon *ngIf="isLightTheme">brightness_3</mat-icon>
+              <mat-icon *ngIf="!isLightTheme">wb_sunny</mat-icon>
+            </button>
+          </li>
+
+          
+          <li
+            *ngIf="auth.isLoggedInValue; else elseBlock"
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+          >
+            <a class="nav-link text-white menu-link" (click)="logOut()"
+              >Wyloguj się</a
+            >
+          </li>
+          <ng-template #elseBlock>
+            <li class="nav-item" [routerLinkActive]="['link-active']">
+              <a
+                class="nav-link text-white menu-link"
+                [routerLink]="['/logowanie']"
+                (click)="changeLoginType()"
+                >Zaloguj się</a
+              >
+            </li>
+          </ng-template>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<mat-menu #Menu="matMenu" xPosition="before">
+  <div class="notificationMenu" style="width: 400px; max-height: 400px; background-color: var(--background-main-color)">
+    <div
+      class="d-flex justify-content-center"
+      style="height: 40px; color: var(--h1-color)"
+    >
+      <p>Powiadomienia</p>
+    </div>
+
+    <div
+      (click)="doSomething($event)"
+      class="reszta"
+      style="
+        overflow-y: auto;
+        max-height: 320px;
+        padding-left: 10px;
+        padding-right: 10px;
+      "
+    >
+      <div *ngFor="let notification of notifications" class="row notification">
+        <div
+          class="col d-flex align-items-center"
+          style="padding: 0px; max-width: 25px"
+        >
+          <mat-icon
+            *ngIf="!notification.isRead"
+            color="accent"
+            style="transform: scale(0.6)"
+            >fiber_manual_record</mat-icon
+          >
+        </div>
+        <div class="col" style="padding: 0px; max-width: 275px ">
+          <div class="row d-flex align-items-center justify-content-center">
+            {{ notification.description }}
+          </div>
+          <div
+            class="row d-flex align-items-center justify-content-center"
+            style="color: #9c9c9c"
+          >
+            {{ notification.eventTitle }}
+          </div>
+        </div>
+        <div
+          *ngIf="notification.type == 'Zaproszenie'; else elseBlock"
+          class="col d-flex justify-content-center align-items-center"
+          style="padding: 0px; max-width: 80px"
+        >
+          <button
+            mat-mini-fab
+            color="accent"
+            matTooltip="Zaakceptuj zaproszenie"
+            (click)="acceptInvite(notification)"
+            style="transform: scale(0.8)"
+          >
+            <mat-icon style="color: white">check</mat-icon>
+          </button>
+
+          <button
+            mat-mini-fab
+            color="warn"
+            matTooltip="Odrzuć zaproszenie"
+            (click)="declineInvite(notification)"
+            style="transform: scale(0.8)"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <ng-template #elseBlock>
+          <div
+            class="col d-flex justify-content-center align-items-center"
+            style="padding: 0px; max-width: 80px"
+          >
+            <button
+              mat-mini-fab
+              color="primary"
+              matTooltip="Oznacz jako przeczytane"
+              style="transform: scale(0.8)"
+              *ngIf="!notification.isRead"
+              (click)="toggleRead(notification)"
+            >
+              <mat-icon style="color: white">drafts</mat-icon>
+            </button>
+
+            <button
+              mat-mini-fab
+              color="warn"
+              matTooltip="Usuń powiadomienie"
+              style="transform: scale(0.8)"
+              (click)="deleteNotification(notification.id)"
+            >
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </div>
+        </ng-template>
+      </div>
+
+      <div
+        *ngIf="notifications.length == 0"
+        class="col d-flex align-items-center justify-content-center notification"
+        style="color: white; margin-bottom: 0px"
+      >
+        <p>Nie masz żadnych powiadomień</p>
+      </div>
+    </div>
+
+    <div
+      class="d-flex justify-content-center"
+      style="height: 20px; margin: 0px; color: white; padding-top: 10px"
+    ></div>
+  </div>
+</mat-menu>

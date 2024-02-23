@@ -1,0 +1,52 @@
+<div class="container" *ngIf="imagesNum > 0">
+  <p-carousel
+    *ngIf="loaded"
+    [value]="images"
+    [numVisible]="numVisible"
+    [numScroll]="1"
+    [circular]="false"
+    [styleClass]="'custom-carousel'"
+    [autoplayInterval]="autoplay"
+    [responsiveOptions]="responsiveOptions"
+  >
+    <ng-template let-img pTemplate="item">
+      <img
+        src="{{ img.image }}"
+        width="100%"
+        style="cursor: pointer; max-height: 300px"
+        (click)="showImage($event, img.image, img.userId)"
+      />
+    </ng-template>
+  </p-carousel>
+
+  <p-dialog
+    header="Image Preview"
+    [(visible)]="display"
+    [modal]="true"
+    [dismissableMask]="true"
+    [responsive]="true"
+    [showHeader]="false"
+    [style]="{ width: '50vw' }"
+    (onHide)="onDialogHide()"
+    [contentStyle]="{ 'background-color': 'transparent' }"
+    contentStyleClass="custom - dialog"
+  >
+    <img [src]="selectedImage" style="width: 100%" class="previewimg" />
+    <button
+      mat-button
+      color="warn"
+      style="
+        width: 100%;
+        border-radius: 15px;
+        background-color: black;
+        padding: 15px;
+        margin-top: 15px;
+        font-size: 22px;
+      "
+      (click)="deleteImage()"
+      *ngIf="userRole.role === 'Admin' || selectedImageUserId === userRole.id"
+    >
+      <mat-icon>delete</mat-icon>Usuń zdjęcie
+    </button>
+  </p-dialog>
+</div>

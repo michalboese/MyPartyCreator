@@ -1,0 +1,40 @@
+[data-theme="light"] {
+    --background-color: #ffffff;
+    --background-main-color: #dadada;
+    --h1-color: rgb(84, 84, 84);
+    --backgroundInviteList: rgb(153, 153, 153);
+    --backgroundChat: rgb(200, 200, 200);
+    --special-accent: rgb(248, 87, 43);
+
+    --backgroundNavbar: rgb(228, 228, 228);
+    --eventFont-color: aliceblue;
+    --addItems-color: rgb(189, 189, 189);
+    --tablebackgroundColor: #d9d9d9;
+    --label-text-color: rgb(45, 45, 45);
+    mat-icon {
+      color: rgb(23, 23, 23);
+    }
+    --card-color: #323232b4 !important;
+    --child-background-color: #c5c5c5;
+    --calendar-color: #a3a2a2;
+    --notification-background-color: #c3c3c3;
+    --background-question-color: #b2b2b2;
+    --spotify-background-color:#bcbcbc;
+  }
+  
+  [data-theme="dark"] {
+    --background-color:#2d2d2d;
+    --background-main-color:#3d3d3d;
+    --h1-color: aliceblue;
+    --backgroundInviteList: #484848;
+    --backgroundChat: #2d2d2d;
+    --backgroundNavbar: #191919;
+    --addItems-color: #212121;
+    --tablebackgroundColor: #545454;
+    --card-color: #ffffff99 !important;
+    --child-background-color: #373737;
+    --calendar-color: #303030;
+    --notification-background-color: #5d5d5d;
+    --background-question-color: #5d5d5d;
+    --spotify-background-color:#545454;
+  }

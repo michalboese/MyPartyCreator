@@ -1,0 +1,60 @@
+<html>
+  <header></header>
+  <body>
+    <div class="my-section">
+      <div class="card">
+        <mat-tab-group
+          class="profileTab"
+          mat-stretch-tabs="true"
+          mat-align-tabs="center"
+          animationDuration="0ms"
+        >
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon>account_circle</mat-icon>
+              <span>&nbsp;Profil</span>
+            </ng-template>
+            <div class="parent">
+              <div class="profile-picture">
+                <img [src]="profilePicture" alt="User Profile Picture" />
+              </div>
+              <div class="user-info" *ngIf="userData">
+                <h2>{{ userData.firstName }} {{ userData.lastName }}</h2>
+                <br />
+                <table class="blueTable">
+                  <tbody>
+                    <tr>
+                      <td style="width: 30%">Email</td>
+                      <td style="width: 20%">:</td>
+                      <td>{{ userData.email }}</td>
+                    </tr>
+                    <tr>
+                      <td>Data urodzenia</td>
+                      <td>:</td>
+                      <td>
+                        {{ userData.birthday + "Z" | date : "mediumDate" }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Opis</td>
+                      <td>:</td>
+                      <td>{{ userData.description }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <button
+                mat-raised-button
+                class="dodajkontakt"
+                (click)="addContact()"
+                color="primary"
+              >
+                Dodaj do kontaktów
+              </button>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </body>
+</html>

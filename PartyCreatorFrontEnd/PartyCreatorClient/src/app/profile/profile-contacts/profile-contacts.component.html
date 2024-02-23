@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card" style="margin-top: 1em">
+        <div class="card-header">
+          <h4 class="card-title">Lista kontaktów</h4>
+        </div>
+        <div class="card-body">
+          <table class="kontakty">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Email</th>
+                <th scope="col" style="text-align: center">Akcje</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let contact of contacts">
+                <td>{{ contact.name }}</td>
+                <td>{{ contact.email }}</td>
+                <td class="action-column">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="editContact(contact)"
+                  >
+                    <mat-icon>edit</mat-icon>
+                    <span>&nbsp;Edytuj</span>
+                  </button>
+                  <button
+                    mat-raised-button
+                    color="warn"
+                    (click)="deleteContact(contact.id)"
+                  >
+                    <mat-icon>delete</mat-icon>
+                    <span>&nbsp;Usuń</span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button
+            class="add-button"
+            mat-raised-button
+            color="primary"
+            (click)="openAddContactDialog()"
+          >
+            <mat-icon>add</mat-icon>
+            <span>&nbsp;Dodaj</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

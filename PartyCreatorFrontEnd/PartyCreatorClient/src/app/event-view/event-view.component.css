@@ -1,0 +1,595 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--background-color) !important;
+}
+
+header {
+  margin-bottom: 60px;
+}
+body {
+  background-color: var(--background-color) !important;
+  color: #fff;
+  height: 100%;
+}
+
+.mainLayout {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 1fr 0.5fr;
+  gap: 15px 30px;
+  grid-template-areas:
+    "details chat inviteList"
+    "editDetails photos inviteList";
+  background-color: var(--background-color);
+  margin-left: 20px;
+}
+
+.extraFunctions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 35px 35px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "thingsToBring  surveys"
+    "spotifyPlaylist shareReceipt";
+  padding: 20px;
+  width: 100%;
+  background-color: var(--background-color);
+  margin: 0;
+}
+
+.surveys {
+  grid-area: surveys;
+}
+
+.details,
+.chat,
+.inviteList,
+.surveys {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  padding: 5px;
+}
+.details {
+  grid-area: details;
+  background-color: var(--special-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  margin-top: 40px;
+  margin-bottom: 60px;
+  position: relative; /* Dodane, aby umożliwić pozycjonowanie absolutne pseudoelementu */
+}
+
+.details::before {
+  content: "";
+  position: absolute; /* Pozycjonowanie absolutne */
+  top: 0; /* Pozycja od góry */
+  left: 0; /* Pozycja od lewej */
+  right: 0; /* Pozycja od prawej */
+  bottom: 0; /* Pozycja od dołu */
+  background: linear-gradient(
+    to left top,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.2)
+  );
+  border-radius: 15px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.details h1 {
+  color: aliceblue;
+  font-weight: bold;
+  padding: 10px;
+  word-break: normal;
+}
+.Details {
+  text-align: center;
+}
+.Details p {
+  text-align: center;
+  font-size: 20px;
+  max-width: 380px; /* or adjust as needed */
+  word-wrap: break-word;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.eventAddress:hover {
+  cursor: pointer;
+}
+
+.editDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+}
+
+.editDetails2 {
+  display: none;
+}
+
+.uploadFile {
+  display: none;
+}
+
+::ng-deep .p-fileupload-choose {
+  font-size: 22px;
+  color: #000;
+  margin-top: 3em;
+  background-color: var(--special-accent);
+  border: none;
+  border-radius: 15px;
+}
+
+.editDetails button {
+  background-color: var(--special-accent);
+  width: 80%;
+  height: 80px;
+  border-radius: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  border-style: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+input[name="name"] {
+  font-size: 24px;
+}
+
+input[name="description"] {
+  width: 100%;
+  height: 100px;
+  word-break: break-all;
+}
+
+textarea[name="description"] {
+  width: 100%;
+  word-break: break-all;
+  font-size: 24px;
+}
+.thingsToBring {
+  text-align: center;
+}
+
+.titleBringThings {
+  float: left;
+  margin-left: 330px;
+}
+.toggle-arrow {
+  cursor: pointer;
+  float: right;
+  margin-right: 5px;
+}
+
+.thingsToBringTitle {
+  background-color: var(--special-accent);
+  color: black;
+  padding-top: 10px;
+  padding-bottom: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  z-index: 3;
+}
+
+.thingsToBringList {
+  display: flex;
+  flex-direction: column; /* Ustawienie, aby elementy układały się w kolumnie */
+  height: 287px;
+  background-color: #545454;
+  margin-top: 0px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  z-index: 1;
+  overflow-y: auto;
+}
+.thingsToBringList::-webkit-scrollbar {
+  background-color: #333;
+}
+
+/* Kolor samego paska przewijania */
+.thingsToBringList::-webkit-scrollbar-thumb {
+  background-color: var(--special-primary);
+}
+
+/* Kolor obszaru, który nie jest pokryty przez pasek przewijania */
+.thingsToBringList::-webkit-scrollbar-track {
+  background-color: #545454;
+}
+.thingsToBringList p {
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  width: 100%;
+  background-color: #616161;
+}
+.thingsToBringList button {
+  margin-left: 10px;
+  background-color: var(--special-primary);
+  color: white;
+  border-radius: 8px;
+  border-color: var(--special-primary);
+}
+.rounded-bottom {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* .spotifyPlaylist{
+  background-color: var(--special-accent);
+} */
+.surveys {
+  height: 406px;
+}
+.surveys {
+  height: 406px;
+}
+.shareReceipt {
+  height: 406px;
+}
+.chat {
+  grid-area: chat;
+  height: fit-content;
+  display: flex;
+  flex-direction: column-reverse; /* Reverse the direction of the flex container */
+  min-height: 500px;
+  background-color: var(--backgroundChat);
+}
+
+.photos {
+  grid-area: photos;
+  background-color: transparent;
+  height: 100%;
+}
+
+.creator {
+  font-weight: bold;
+  color: var(--special-accent);
+  font-size: 1.5rem;
+}
+
+.guests {
+  font-size: 1.5rem;
+}
+
+.invited {
+  opacity: 0.5;
+  font-size: 1.2rem;
+}
+
+.inviteList {
+  grid-area: inviteList;
+  background-color: var(--backgroundInviteList);
+  text-align: center;
+  width: 400px;
+  height: 815px;
+  position: relative;
+}
+
+.inviteList button {
+  background-color: var(--special-primary);
+  font-weight: bold;
+  color: (--h1-color);
+  position: absolute;
+  bottom: 10px; /* Adjust the distance from the bottom as needed */
+  left: 50%; /* Center the button horizontally */
+  transform: translateX(-50%); /* Center the button horizontally */
+  width: 95%;
+  padding: 20px;
+  font-size: 28px;
+  border-radius: 15px;
+  border-style: none;
+}
+
+.addNewContent {
+  font-size: 200px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: #343434;
+  border: rgb(168, 168, 168) 4px solid;
+  border-radius: 15px;
+  padding-bottom: 50px;
+  cursor: pointer;
+  height: 408px;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+thead.thead-dark {
+  background-color: #373737;
+}
+
+table td,
+table th {
+  border: 0;
+  padding: 1em 1rem;
+}
+
+table td:first-child,
+table th:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+table td:last-child,
+table th:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+table tr:nth-child(even) {
+  background: #373737;
+}
+.thingsToBring {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.thingsToBringContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.thingsToBringList {
+  width: 100%;
+}
+.add-item-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #212121;
+  z-index: 1;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.item-name-field {
+  flex: 2;
+  max-width: 400px;
+  margin-bottom: -20px;
+}
+.quantity-field {
+  flex: 1;
+  margin-bottom: -20px;
+  max-width: 200px;
+}
+
+.buttonAddItem {
+  min-width: 120px;
+  height: 50px;
+  margin-left: 10px;
+  font-size: 22px;
+}
+
+@media (max-width: 1400px) {
+  .mainLayout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "details inviteList"
+      "chat chat"
+      "photos photos"
+      "thingsToBring thingsToBring";
+  }
+
+  .details,
+  .thingsToBring,
+  .chat,
+  .inviteList {
+    width: 100%;
+  }
+  .details,
+  .inviteList {
+    height: 600px;
+  }
+  .inviteList {
+    margin-top: 38px;
+  }
+}
+
+.details i {
+  font-size: 28px;
+  color: var(--special-accent);
+  cursor: pointer;
+}
+
+.addNewContent {
+  background-color: var(--background-color);
+  color: var(--h1-color);
+  font-size: 64px;
+}
+
+@media (max-width: 700px) {
+  .mainLayout {
+    display: flex;
+    margin-left: 0;
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "details"
+      "chat"
+      "inviteList"
+      "thingsToBring"
+      "photos";
+  }
+
+  .mainLayout .buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .editDetails {
+    display: none;
+  }
+
+  .details {
+    height: 500px;
+    margin-top: 1em;
+    margin-bottom: 0;
+    order: 1;
+  }
+  .editDetails2 {
+    display: flex;
+    order: 1;
+    width: 100%;
+  }
+
+  .editDetails2 button {
+    background-color: var(--special-accent);
+    width: 80%;
+    height: 80px;
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .editDetails2 button {
+    width: 100%;
+    height: 60px;
+  }
+
+  .chat {
+    order: 3;
+  }
+
+  .inviteList {
+    order: 2;
+    margin-bottom: 30px;
+  }
+
+  .inviteList button {
+    width: 100%;
+    height: 70px;
+    font-size: 18px;
+  }
+
+  .photos {
+    margin-top: 3em;
+    order: 4;
+  }
+
+  .uploadFile {
+    display: block;
+    order: 5;
+    width: 100%;
+  }
+
+  ::ng-deep .p-fileupload-choose {
+    background-color: var(--special-primary);
+    color: aliceblue;
+    margin-top: 1em;
+    width: 100%;
+    height: 60px;
+    font-size: 18px;
+  }
+
+  .extraFunctions {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .thingsToBring {
+    order: 6;
+  }
+
+  .shareReceipt {
+    order: 7;
+  }
+
+  .spotifyPlaylist {
+    order: 8;
+  }
+
+  .details,
+  .chat,
+  .inviteList,
+  .photos,
+  .spotifyPlaylist,
+  .shareReceipt,
+  .thingsToBring {
+    width: 100%;
+  }
+
+  .titleBringThings {
+    float: none;
+    margin: 0;
+  }
+
+  .thingsToBringList {
+    padding: 0;
+  }
+  .thingsToBringList button {
+    min-width: fit-content;
+    height: 25px;
+    margin-bottom: 5px;
+  }
+
+  ::ng-deep .mdc-button .mdc-button__label {
+    display: none;
+  }
+
+  ::ng-deep .mat-mdc-unelevated-button > .mat-icon,
+  .mat-mdc-raised-button > .mat-icon,
+  .mat-mdc-outlined-button > .mat-icon {
+    margin: 0;
+  }
+  table td,
+  table th {
+    border: 0;
+    font-size: 10px;
+  }
+
+  table td:first-child,
+  table th:first-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  table td:last-child,
+  table th:last-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .buttonAddItem {
+    width: 75px;
+    font-size: 12px;
+    height: 50px;
+    min-width: 0px;
+  }
+
+  ::ng-deep
+    .mat-mdc-form-field:not(.mat-form-field-disabled)
+    .mat-mdc-floating-label.mdc-floating-label {
+    float: inline-start;
+    font-size: 12px;
+  }
+
+  ::ng-deep
+    .mat-mdc-text-field-wrapper.mdc-text-field--outlined
+    .mat-mdc-form-field-infix {
+    font-size: 12px;
+  }
+}

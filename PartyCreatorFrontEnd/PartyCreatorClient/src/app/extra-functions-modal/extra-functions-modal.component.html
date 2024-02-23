@@ -1,0 +1,43 @@
+<h1 mat-dialog-title style="text-align: center; padding: 5px; color: white">
+  Dodaj nowe treści
+</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="row row-class-opcje">
+      <div class="col col-slider">
+        <mat-slide-toggle formControlName="playlist" color="primary">
+          <span style="font-size: 22px">Dodaj Playliste Spotify</span>
+        </mat-slide-toggle>
+      </div>
+      <div class="row row-slider"></div>
+      <div class="col col-slider">
+        <mat-slide-toggle formControlName="receipt" color="primary">
+          <span style="font-size: 22px">Dodaj Dzielenie Się Rachunkiem</span>
+        </mat-slide-toggle>
+      </div>
+      <div class="row row-slider"></div>
+      <div class="col col-slider">
+        <mat-slide-toggle formControlName="shoppingList" color="primary">
+          <span style="font-size: 22px"> Dodaj Liste Zakupów</span>
+        </mat-slide-toggle>
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions align="end" style="padding-right: 30px">
+  <button
+    mat-raised-button
+    mat-dialog-close
+    (click)="onNoClick()"
+    style="margin-right: 10px; background-color: red"
+  >
+    Anuluj
+  </button>
+  <button
+    mat-raised-button
+    (click)="onAddClick()"
+    style="background-color: var(--special-primary)"
+  >
+    Zapisz
+  </button>
+</div>

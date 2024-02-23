@@ -1,0 +1,119 @@
+<div class="parent">
+  <div class="profile-picture" (click)="changeProfilePicture()">
+    <img [src]="profilePicture" alt="User Profile Picture" />
+  </div>
+  <div class="user-info">
+    <div class="form-container">
+
+    <form
+      [formGroup]="profileForm"
+      (ngSubmit)="editProfile()"
+      class="profileForm"
+    >
+      <mat-form-field appearance="outline" color="accent" style="width: 100%">
+        <mat-label>Imię</mat-label>
+        <input matInput maxlength="20" formControlName="firstName" required class="textInput"/>
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="accent" style="width: 100%">
+        <mat-label>Nazwisko</mat-label>
+        <input matInput maxlength="20" formControlName="lastName" required class="textInput" />
+      </mat-form-field>
+      <mat-form-field
+        appearance="outline"
+        color="accent"
+        style="width: 100%"
+        class="mobile-calendar"
+      >
+        <mat-label style="color: #a6a6a6">Data urodzenia</mat-label>
+        <input
+          matInput
+          [max]="maxDate"
+          readonly
+          [matDatepicker]="picker1"
+          formControlName="birthday"
+          style="color: white"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field
+        appearance="outline"
+        color="accent"
+        style="width: 100%"
+        class="desktop-calendar"
+      >
+        <mat-label style="color: #a6a6a6">Data urodzenia</mat-label>
+        <input
+          matInput
+          [max]="maxDate"
+          readonly
+          [matDatepicker]="picker2"
+          formControlName="birthday"
+          style="color: var(--h1-color)"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="accent" style="width: 100%">
+        <mat-label>Opis</mat-label>
+        <textarea
+          matInput
+          maxlength="100"
+          formControlName="description"
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="3"
+          cdkAutosizeMaxRows="6"
+          class="textInput"
+        ></textarea>
+      </mat-form-field>
+
+      <br />
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        style="width: 100%"
+        [disabled]="!profileForm.valid"
+      >
+        Zapisz
+      </button>
+
+    </form>
+
+    <form  *ngIf="showChangePasswordForm" [formGroup]="passwordForm"  (ngSubmit)="savePassword()">
+      <mat-form-field appearance="outline" color="accent" style="width: 100%">
+        <mat-label>Stare hasło</mat-label>
+        <input matInput [type]="hideOldPassword ? 'password' : 'text'" formControlName="oldPassword" />
+        <button mat-icon-button matSuffix (click)="toggleOldPasswordVisibility()" type="button">
+          <mat-icon>{{hideOldPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="accent" style="width: 100%">
+        <mat-label>Nowe hasło</mat-label>
+        <input matInput [type]="hideNewPassword ? 'password' : 'text'" formControlName="newPassword" />
+        <mat-error *ngIf="passwordForm.get('newPassword')?.errors?.['customError']">
+          {{ passwordForm.get('newPassword')?.errors?.['customError'] }}
+        </mat-error>
+        <button mat-icon-button matSuffix (click)="toggleNewPasswordVisibility()" type="button">
+          <mat-icon>{{hideNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      
+      <button mat-raised-button color="accent" type="submit"  [disabled]="!passwordForm.valid" style="margin-top:20px;">Zapisz hasło</button>
+    </form>
+    <br>
+    <button mat-raised-button color="accent" class="editPassword" (click)="toggleChangePasswordForm()" *ngIf="accountType == 'Email'" >
+      Edytuj hasło
+    </button>
+  </div>
+</div>
+</div>

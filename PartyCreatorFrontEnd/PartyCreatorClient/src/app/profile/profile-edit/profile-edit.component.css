@@ -1,0 +1,108 @@
+.parent {
+  padding-top: 10vh;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 5em;
+}
+
+.mobile-calendar {
+  display: none;
+}
+
+.profile-picture {
+  flex: 1 0; /* Grow, don't shrink, base width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.profile-picture img:hover {
+  cursor: pointer;
+}
+
+.profile-picture img {
+  width: 250px;
+  height: auto;
+}
+
+.user-info {
+  flex: 2 0; /* Grow, don't shrink, base width */
+  padding-bottom: 20px;
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.profileForm {
+  padding-right: 2em;
+  width: 80%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px; 
+}
+
+.profileForm, .passwordForm {
+  flex: 1; 
+}
+
+.editPassword{
+  margin-right:50px;
+  height:43px;
+}
+mat-label{
+  color:var(--h1-color);
+}
+.textInput {
+  color: var(--h1-color) !important; 
+}
+@media (max-width: 800px) {
+  .desktop-calendar {
+    display: none;
+  }
+  .mobile-calendar {
+    display: block;
+  }
+  .parent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2em;
+    height: fit-content;
+    width: 100%;
+  }
+  .user-info {
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+
+  .profile-picture img {
+    width: 150px;
+    height: auto;
+  }
+
+  .profileForm {
+    padding: 2em;
+    width: 100%;
+  }
+
+  ::ng-deep .mat-mdc-tab-group {
+    height: fit-content;
+  }
+  .form-container {
+    flex-direction: column;
+  }
+}

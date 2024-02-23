@@ -1,0 +1,168 @@
+::ng-deep .my-calendar {
+  background-color: #737373;
+  color: #fff;
+  width: 100%;
+}
+
+.mobilebuttons {
+  display: none;
+}
+
+::ng-deep .my-calendar .cal-month-view,
+::ng-deep .my-calendar .cal-week-view,
+::ng-deep .my-calendar .cal-day-view {
+  background-color: var(--calendar-color);
+  width: 100%;
+}
+
+::ng-deep .my-calendar .cal-header {
+  color: #fff;
+  border-top: solid 1px #000;
+  border-right: solid 1px #000;
+  border-left: solid 1px #000;
+}
+.maincontainer {
+  padding-top: 1em;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.calContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.calContainer .my-calendar {
+  display: flex;
+  flex: 1;
+}
+
+.calContainer .btn {
+  margin: 0 3em;
+  margin-top: 27.5vh;
+  height: 4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 0 1 auto;
+}
+
+::ng-deep
+  .my-calendar
+  .cal-month-view
+  .cal-day-cell.cal-out-month
+  .cal-day-number {
+  opacity: 0.2;
+}
+
+::ng-deep .my-calendar .cal-month-view .cal-day-number {
+  opacity: 1;
+}
+
+::ng-deep .my-calendar .cal-month-view .cal-day-badge {
+  background-color: var(--special-accent-900);
+  color: #fff;
+}
+
+::ng-deep .my-calendar .cal-header:hover {
+  background-color: transparent;
+}
+
+::ng-deep
+  .my-calendar
+  .cal-month-view
+  .cal-day-cell.cal-weekend
+  .cal-day-number {
+  color: rgb(222, 81, 42);
+}
+
+::ng-deep .my-calendar .cal-cell.cal-has-events.cal-open {
+  background-color: var(--special-accent);
+}
+
+::ng-deep .my-calendar .cal-days {
+  border-color: #000;
+}
+
+::ng-deep .my-calendar .cal-day-cell:not(:last-child) {
+  border-color: #000;
+}
+
+::ng-deep .my-calendar .cal-days .cal-cell-row {
+  border-color: #000;
+}
+
+::ng-deep .my-calendar .cal-header .cal-cell:hover {
+  background-color: transparent;
+}
+
+::ng-deep .my-calendar .cal-cell.cal-today {
+  background-color: var(--special-primary-300);
+  color: #fff;
+}
+
+::ng-deep .my-calendar .cal-days .cal-cell.cal-today {
+  background-color: var(--special-primary-300);
+  color: #fff;
+  font-size: 1.2em;
+}
+
+::ng-deep .my-calendar .cal-day-cell.cal-has-events {
+  background-color: var(--special-primary);
+}
+
+::ng-deep .my-calendar .cal-day-cell.cal-has-events:hover {
+  background-color: var(--special-accent) !important;
+}
+
+::ng-deep .my-calendar .cal-event {
+  background-color: var(--special-primary);
+  border-color: var(--special-primary);
+}
+
+::ng-deep .my-calendar .cal-days .cal-cell-row:hover {
+  background-color: transparent;
+}
+
+::ng-deep .my-calendar .cal-days .cal-cell:hover {
+  background-color: transparent;
+}
+
+.btn-primary {
+  background-color: var(--special-primary);
+  border-color: var(--special-primary);
+}
+
+@media (max-width: 768px) {
+  .calContainer {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1em;
+  }
+
+  .calContainer .btn {
+    display: none;
+  }
+
+  .col-md-4:first-child {
+    padding-bottom: 10px;
+  }
+
+  .mobilebuttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 2.5em;
+    position: absolute;
+    z-index: 0;
+    padding: 0;
+  }
+}

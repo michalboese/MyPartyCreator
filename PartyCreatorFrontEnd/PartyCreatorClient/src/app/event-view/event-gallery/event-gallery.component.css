@@ -1,0 +1,49 @@
+.container {
+  padding: 0;
+}
+img {
+  max-width: fit-content;
+  object-fit: contain;
+  display: block;
+  border-radius: 10px;
+}
+
+::ng-deep .custom-carousel .p-carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+/* Ukryj domyślne kropki/paginację */
+::ng-deep .custom-carousel .p-carousel-indicators {
+  display: none;
+}
+
+/* Styl dla przycisków nawigacyjnych */
+::ng-deep .custom-carousel .p-carousel-prev,
+::ng-deep .custom-carousel .p-carousel-next {
+  color: #fff; /* Biały kolor ikon */
+  background-color: var(--special-primary); /* Niebieskie tło */
+  border-radius: 50%; /* Okrągłe krawędzie */
+  width: 36px; /* Określona szerokość */
+  height: 36px; /* Określona wysokość */
+}
+
+::ng-deep .p-dialog-mask {
+  background-color: rgba(0, 0, 0, 0.55) !important;
+  transition: background-color 2s ease-in-out !important;
+}
+
+::ng-deep .p-dialog {
+  box-shadow: none !important;
+  width: fit-content !important;
+}
+
+::ng-deep .p-dialog-content {
+  padding: 1em !important;
+}
+.previewimg {
+  width: auto;
+  height: 80vh;
+}

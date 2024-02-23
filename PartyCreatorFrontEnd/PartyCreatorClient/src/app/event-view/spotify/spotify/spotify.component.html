@@ -1,0 +1,109 @@
+<div class="container">
+  <p class="title">Stwórz playlistę Spotify!</p>
+  <div class="playlistContainer">
+    <a
+      class="spotify-login-button"
+      *ngIf="!spotiToken"
+      href="https://accounts.spotify.com/authorize?client_id=81810883fb3b47bb83ffa68101537c05&response_type=code&redirect_uri=http://localhost:4200/redirect&scope=playlist-modify-private%20playlist-modify-public%20user-read-private%20user-read-email&show_dialog=true
+    "
+      >Zaloguj się do Spotify</a
+    >
+    <div *ngIf="spotiToken">
+      <ol class="search-results playlist-songs">
+        <li
+          *ngFor="let track of playlistTracks; let i = index"
+          class="track-item"
+        >
+          <img
+            [src]="track.image"
+            alt="Album cover"
+            class="spotify-album-cover"
+          />
+          <div class="track-info">
+            <strong>{{ track.title }} </strong>
+            <div>{{ track.artist }}</div>
+          </div>
+          <button
+            class="btn btn-danger"
+            (click)="removeFromPlaylist(i, track.id)"
+          >
+            Usuń z playlisty
+          </button>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <!-- Button trigger modal -->
+  <div *ngIf="spotiToken" class="button-container">
+    <button
+      type="button"
+      class="btn spotify-button spotify-search-button"
+      data-bs-toggle="modal"
+      data-bs-target="#searchModal"
+    >
+      Wyszukaj piosenki
+    </button>
+    <button
+      type="button"
+      class="btn spotify-button spotify-playlist-button"
+      (click)="createPlaylist()"
+    >
+      Dodaj playlistę do konta
+    </button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="searchModal"
+  tabindex="-1"
+  aria-labelledby="searchModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog spotify-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Wyszukaj utwór</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <input
+          type="text"
+          class="form-control spotify-input"
+          placeholder="Wpisz tytuł piosenki"
+          [formControl]="searchControl"
+        />
+      </div>
+      <ol class="search-results">
+        <li *ngFor="let track of tracks" class="track-item">
+          <img
+            [src]="track.album.images[0]?.url"
+            alt="Album cover"
+            class="spotify-album-cover"
+          />
+          <div class="track-info">
+            <strong>{{ track.name }} </strong>
+            <div
+              class="artist-container"
+              *ngFor="let artist of track.artists; let i = index"
+            >
+              <div *ngIf="i < 2">{{ artist.name }}</div>
+            </div>
+          </div>
+          <button
+            class="btn btn-primary spotify-button spotify-add-button"
+            (click)="addToPlaylist(track)"
+          >
+            Dodaj do playlisty
+          </button>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>

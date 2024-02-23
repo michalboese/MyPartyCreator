@@ -1,0 +1,14 @@
+mat-form-field {
+  width: 100%;
+}
+
+mat-dialog-actions {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  margin-bottom: 1em;
+}
+
+button {
+  margin-right: 1em;
+}

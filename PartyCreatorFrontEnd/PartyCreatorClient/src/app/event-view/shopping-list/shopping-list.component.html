@@ -1,0 +1,104 @@
+     <div
+        class="thingsToBringTitle"
+        [ngClass]="{ 'rounded-bottom': isThingsToBringVisible }"
+      >
+       <h5 class="titleBringThings">Zabierz ze sobą!</h5>
+      </div>
+      <div class="thingsToBringList" [ngStyle]="{
+        'max-height': userRole.role === 'Admin' ? '207px' : '363px', 
+        'min-height': userRole.role === 'Admin' ? '285px' : '363px', 
+        'overflow-y': 'auto'
+      }">
+
+        
+        <table>
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Przedmiot</th>
+              <th scope="col">Liczba</th>
+              <th scope="col">Kto przyniesie</th>
+              <th scope="col" style="text-align: center">Akcje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of shoppingList">
+              <td>{{ item.name }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.firstName }} {{ item.lastName }}</td>
+              <td class="action-column">
+                <button
+                  mat-raised-button
+                  *ngIf="userRole.id == item.userId"
+                  color="primary"
+                  (click)="signOutFromItem(item.id)"
+                >
+                  <mat-icon>thumb_down</mat-icon>
+                  <span>&nbsp;Nie Przynoś</span>
+                </button>
+                <button
+                  mat-raised-button
+                  *ngIf="
+                    userRole.role == 'Admin' &&
+                    item.userId != 0 &&
+                    item.userId != userRole.id
+                  "
+                  color="primary"
+                  (click)="signOutFromItem(item.id)"
+                >
+                  <mat-icon>clear</mat-icon>
+                  <span>&nbsp;Resetuj</span>
+                </button>
+                <button
+                  mat-raised-button
+                  *ngIf="item.userId == 0"
+                  color="primary"
+                  (click)="signUpForItem(item.id)"
+                >
+                  <mat-icon>thumb_up</mat-icon>
+                  <span>&nbsp;Przynieś</span>
+                </button>
+                <button
+                  mat-raised-button
+                  color="warn"
+                  *ngIf="userRole.role == 'Admin'"
+                  (click)="deleteItem(item.id)"
+                >
+                  <mat-icon>delete</mat-icon>
+                  <span>&nbsp;Usuń</span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="add-item-form" *ngIf="userRole.role == 'Admin'">
+        <mat-form-field appearance="outline" class="item-name-field">
+          <mat-label>Nazwa przedmiotu</mat-label>
+          <input
+            matInput
+            [(ngModel)]="newItemName"
+            placeholder="Nazwa przedmiotu"
+            maxlength="48"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="quantity-field">
+          <mat-label>Ilość</mat-label>
+          <input
+            matInput
+            [(ngModel)]="newItemQuantity"
+            placeholder="Ilość"
+            type="number"
+            class="numberOfItem"
+            max="100"
+          />
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="addItem()"
+          class="buttonAddItem"
+        >
+          Dodaj przedmiot
+        </button>
+      </div>
+

@@ -1,0 +1,233 @@
+.parent { /*grid z 2 divami, opis strony z przyciskiem do rejestracji i krotka informacja na dole strony */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.div1 {  /*opis strony z przyciskiem do rejestracji */
+  position:fixed;
+  top:15%;
+  font-size:20px;
+  left:45%;
+  right:8%;
+  grid-area: 1 / 2 / 2 / 3;;   
+  text-align:center;
+  color: white;    
+}
+.div1  h1{
+  font-size:62px;
+}
+
+.div2 { /* informacja na dole o poznaniu reszty funkcji */
+  position:fixed;
+  grid-area: 2 / 1 / 3 / 2;
+  text-align:center;
+  color: black; 
+  top: 94%;
+  left:20%;
+  right:20%;
+}
+
+.div2  h1{
+  font-size:34px;
+}
+
+.div1 p, .div2 p{
+  margin-top:5%;
+}
+
+.btnregister{
+  margin-top:2%;
+  font-size: 24px;
+  padding: 15px 15px;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 82%;
+  -webkit-transform: skewY(12deg); /*wersja dla przeglądarek opartych na silniku WebKit (takich jak Safari i starsze wersje Chrome */
+  transform: skewY(12deg); /*transform jest wersją zgodną z nowszym standardem CSS*/
+  -webkit-transform-origin: 100%;
+  transform-origin: 100%;
+  background: -o-linear-gradient(240deg, #222222 15%, #373737 70%, #3c4859 94%);
+  background: linear-gradient(-150deg, #222222 15%, #373737 70%, #3c4859 94%);
+  z-index:1;
+}
+
+.bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color:transparent;
+  z-index:1;
+}
+
+.parent2 {  /*divy z funkcjami jakie sa na stronies */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background-color: var(--background-color);
+  color:white;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  z-index: 9999; /*z-index, zeby wyswietlal sie nad innymi elementami na stronie*/
+  transition: top 0.3s; /*płynne przejście*/
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 200px; 
+  grid-row-gap: 165px; 
+  font-size:22px;
+  padding: 120px;
+}
+
+.div1Functions, .div1Functions, .div2Functions, .div3Functions, .div4Functions, .div5Functions, .div6Functions, .div7Functions, .div8Functions{ 
+  grid-area:auto;
+  background-color:pink;
+  margin: auto;
+  width: 100%;
+  height:100%;
+  padding-top:5%;
+  padding-left:5%;
+  padding-right:5%;
+  padding-bottom:2%;
+  border-radius:1%;
+  box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.5);
+}
+
+.div1Functions{
+  background-color:#99cc33;
+}
+
+.div2Functions{
+  background-color:#5eb0eb;
+}
+
+.div3Functions{
+  background-color:#996666;
+}
+
+.div4Functions{
+  background-color:#c08cbd;
+}
+
+.div5Functions{
+  background-color:#a79e63;
+}
+
+.div6Functions{
+  background-color:#974949;
+}
+
+.div7Functions{
+  background-color:#7f5992;
+}
+
+.div8Functions{
+  background-color:#4b67a0;
+}
+
+.parent2 h3 {
+  color: black;
+  text-align: center; 
+  font-weight:bold;
+}
+
+.parent2 p{
+  font-size:24px;
+}
+
+app-nav-menu { /*ustawienie, zeby pasek nawigacyjny  ukryl sie podczas przewijania przy parent2) */
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10; 
+}
+.logo {
+  position: absolute;
+  top: 27%;
+  left: 8%;
+  z-index: 2;
+}
+
+.logo img {
+  max-width: 100%;
+  height: auto;
+}
+@media (max-width: 1400px) {
+  .logo{
+    display:none;
+  }
+  .div2{
+    left: 0;
+    right: 0; 
+    top: auto; 
+    bottom: 2%;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo{
+    display:none;
+  }
+  .parent, .parent2 {
+    display: inline-block;
+    text-align: center;
+  }
+
+  .div1 {
+    padding: 5%;
+    left: 0;
+    right: 0;
+    bottom: 8%;
+    margin: auto;
+    text-align: center;
+  }
+
+  .div2{
+    left: 0;
+    right: 0; 
+    top: auto; 
+    bottom: 2%;
+  }
+
+  .div1 h1 {
+    font-size: 32px;
+  }
+
+  .div2 h1 {
+    font-size: 22px;
+  }
+
+  .div1 p, .div2 p {
+    margin-top: 5%;
+    font-size: 22px;
+  }
+
+  .parent2 {
+    top: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0;
+    grid-row-gap: 10px; 
+    font-size: 18px; 
+    padding: 20px;
+  }
+
+  .parent2 h3 {
+    font-size: 24px; 
+  }
+
+  .parent2 > * { /* odstep dla wszystkich elementow wewnatrz parent2 */
+    margin: 50px 0; 
+  }
+}

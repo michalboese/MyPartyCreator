@@ -1,0 +1,89 @@
+<div class="thingsToBringTitle">
+  <h5 class="titleBringThings">Ankiety</h5>
+</div>
+<div *ngIf="userRole.role === 'Admin'" class="all">
+  <form [formGroup]="newSurveyForm" (ngSubmit)="createSurvey()">
+    <mat-form-field class="question-full-width">
+      <mat-label>Pytanie</mat-label>
+      <input matInput formControlName="question" type="text" id="question" />
+    </mat-form-field>
+
+    <div formArrayName="choices" class="choices-container">
+      <div *ngFor="let choice of getChoicesControls(); let i = index">
+        <mat-form-field class="answer">
+          <mat-label>Odpowiedź</mat-label>
+          <input matInput [formControlName]="i" type="text" class="textInput" />
+        </mat-form-field>
+        <button
+          type="button"
+          mat-icon-button
+          color="warn"
+          (click)="removeChoice(i)"
+        >
+          <mat-icon style="margin-left: -30px; margin-right: -10px"
+            >clear</mat-icon
+          >
+        </button>
+      </div>
+    </div>
+    <button
+      type="button"
+      class="button"
+      mat-raised-button
+      color="primary"
+      (click)="addNewChoice()"
+    >
+      Dodaj opcję
+    </button>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="!newSurveyForm.valid"
+    >
+      Utwórz ankietę
+    </button>
+  </form>
+</div>
+
+<mat-accordion class="example-headers-align">
+  <div *ngFor="let survey of surveys">
+    <mat-expansion-panel class="custom-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title style="color: var(--h1-color)">
+          {{ survey.question }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-radio-group aria-label="Select an option">
+        <div class="choices-container">
+          <mat-radio-button
+            *ngFor="let choice of survey.choices"
+            [value]="choice.id"
+            (click)="selectedChoices.set(survey.surveyId, choice.id)"
+          >
+            {{ choice.choiceText }} (głosy:
+            {{ getChoiceVoteCount(survey.surveyId, choice.id) }})
+          </mat-radio-button>
+        </div>
+      </mat-radio-group>
+      <mat-action-row class="saveAnswer">
+        <button
+          mat-button
+          (click)="deleteSurvey(survey.surveyId)"
+          *ngIf="userRole.role === 'Admin'"
+          style="background-color: rgb(255, 0, 0); color: black"
+        >
+          Usuń ankietę
+        </button>
+        <button
+          mat-button
+          (click)="submitVote(survey.surveyId)"
+          style="background-color: var(--special-accent); color: black"
+        >
+          Zagłosuj
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </div>
+</mat-accordion>

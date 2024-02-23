@@ -1,0 +1,71 @@
+.parent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding-top: 5em;
+}
+
+.profile-picture {
+  flex: 1 0; /* Grow, don't shrink, base width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 1em;
+}
+
+.profile-picture img {
+  width: 250px;
+  height: 250px;
+}
+.user-info {
+  flex: 2 0; /* Grow, don't shrink, base width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 20px;
+}
+
+table.blueTable {
+  width: 80%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.blueTable td,
+table.blueTable th {
+  border: 0;
+  padding: 1em 1rem;
+}
+table.blueTable td:first-child,
+table.blueTable th:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+table.blueTable td:last-child,
+table.blueTable th:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+table.blueTable tr:nth-child(odd) {
+  background: var(--child-background-color);
+}
+
+@media (max-width: 800px) {
+  .parent {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2em;
+  }
+
+  .profile-picture {
+    margin: 0;
+  }
+
+  .profile-picture img {
+    width: 150px;
+    height: 150px;
+
+    margin-bottom: 20px;
+  }
+}

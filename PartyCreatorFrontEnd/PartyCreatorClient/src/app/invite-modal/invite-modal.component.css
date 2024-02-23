@@ -1,0 +1,16 @@
+.user-row {
+  margin-top: 10px;
+  height: 50px;
+  background-color: #4d4d4d;
+  border-radius: 5px;
+}
+.user:hover {
+  background-color: rgb(211, 57, 57);
+  cursor: pointer;
+}
+.user {
+  height: 40px;
+  background-color: #4d4d4d;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}

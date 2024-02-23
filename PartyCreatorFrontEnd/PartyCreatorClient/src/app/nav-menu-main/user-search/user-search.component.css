@@ -1,0 +1,18 @@
+.nav-link.text-white:hover {
+  cursor: pointer;
+}
+
+.nav-link.text-white {
+  margin-left: 20px;
+}
+
+.notification {
+  width: 100%;
+  height: 60px;
+  background-color: #5d5d5d;
+  margin-bottom: 10px;
+  padding: 5px;
+  overflow: hidden;
+  color: white;
+  border-radius: 5px;
+}

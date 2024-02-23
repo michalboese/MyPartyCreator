@@ -1,0 +1,85 @@
+.example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+    margin-left: 8px;
+  }
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .answer{
+    width:168px;
+    flex: 1 1 auto;
+    margin-right: 10px; 
+  }
+  .question-full-width {
+    width: 100%;
+    margin-bottom: -15px;
+  }
+  .choices-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom:-15px;
+  }
+
+  .button{
+    margin-right: 10px; 
+    margin-bottom: 5px;
+}
+.mat-accordion .mat-expansion-panel:not(:last-child) {
+  margin-bottom: 20px; 
+}
+.custom-panel{
+  margin-bottom: 5px;
+  background-color: var(--background-question-color);
+}
+.saveAnswer {
+  /*margin-top: -5px; /* Możesz dostosować marginesy według swoich preferencji */
+  /*margin-bottom: -10px; /* Możesz dostosować marginesy według swoich preferencji */
+  padding: 8px;
+}
+
+.mat-accordion {
+  max-height: 185px; 
+  overflow-y: auto;
+  display: block; 
+}
+
+mat-label{
+  color:aliceblue;
+}
+.textInput {
+  color: aliceblue !important; 
+}
+
+.title { 
+  text-align: center;
+  background-color: var(--special-accent);
+  padding:10px;
+  color: black; 
+  font-size: 20px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px; 
+  }
+
+  .thingsToBringTitle {
+    background-color: var(--special-accent);
+    color: black;
+    padding-top: 10px;
+    padding-bottom: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    z-index: 3;
+    text-align:center;
+  }
+  .all{
+    background-color: var(--background-main-color);
+  }
+
+

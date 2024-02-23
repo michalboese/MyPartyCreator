@@ -1,0 +1,133 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+
+@use "node_modules/@angular/material" as mat;
+
+@include mat.core();
+
+$special-primary: mat.define-palette(mat.$indigo-palette, 600, 300, 800);
+$special-accent: mat.define-palette(mat.$orange-palette, 300, 200, 900);
+$special-warn: mat.define-palette(mat.$red-palette, 500, 200, 900);
+$special-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $special-primary,
+      accent: $special-accent,
+      warn: $special-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+@include mat.all-component-themes($special-theme);
+
+:root {
+  --special-primary: #{mat.get-color-from-palette($special-primary, 600)};
+  --special-primary-300: #{mat.get-color-from-palette($special-primary, 300)};
+  --special-primary-800: #{mat.get-color-from-palette($special-primary, 800)};
+  --special-accent: #{mat.get-color-from-palette($special-accent, 300)};
+  --special-accent-200: #{mat.get-color-from-palette($special-accent, 200)};
+  --special-accent-900: #{mat.get-color-from-palette($special-accent, 900)};
+  --special-warn: #{mat.get-color-from-palette($special-warn, 500)};
+  --special-warn-200: #{mat.get-color-from-palette($special-warn, 200)};
+  --special-warn-900: #{mat.get-color-from-palette($special-warn, 900)};
+}
+
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "themes";
+
+//html {
+ //background-color: #2d2d2d;
+//}
+
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.row {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.eventDialog {
+  overflow-y: auto;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: 700px;
+
+  @media (min-width: 769px) {
+  }
+
+  @media (max-width: 768px) {
+  }
+  @media (max-width: 576px) {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 12px; /* szerokość paska przewijania */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #191919; /* ciemnoniebieski kolor paska przewijania */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #3d3d3d; /* ciemnoszare tło paska przewijania */
+}
+/*panel powiadomien*/
+.cdk-overlay-pane {
+  div.mat-mdc-menu-panel {
+    max-width: none;
+    overflow: unset;
+    margin: 0px;
+  }
+}
+
+.mdc-tooltip__surface {
+  background-color: #3d3d3d !important;
+}
+
+.inviteDialog {
+  overflow-y: auto;
+  @media (min-width: 769px) {
+    width: 900px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+
+    .col-2 {
+      display: none;
+    }
+  }
+}
+
+.dialogBackgroundClass {
+  background-color: black;
+  opacity: 0.7 !important;
+}
+

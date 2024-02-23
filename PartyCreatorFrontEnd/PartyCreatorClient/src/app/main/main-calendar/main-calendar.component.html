@@ -1,0 +1,72 @@
+<div class="maincontainer">
+  <div class="row text-center">
+    <div class="col-md-4">
+      <div class="btn-group">
+        <div
+          class="btn btn-outline-secondary"
+          mwlCalendarToday
+          [(viewDate)]="viewDate"
+        >
+          Dzisiaj
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3 style="color: aliceblue">
+        {{ viewDate | calendarDate : view + "ViewTitle" : "PL" : weekStartsOn }}
+      </h3>
+    </div>
+  </div>
+  <br />
+  <div class="calContainer">
+    <div
+      class="btn btn-primary"
+      mwlCalendarPreviousView
+      [view]="view"
+      [(viewDate)]="viewDate"
+      (viewDateChange)="closeOpenMonthViewDay()"
+    >
+      Poprzedni
+    </div>
+    <mwl-calendar-month-view
+      class="my-calendar"
+      [viewDate]="viewDate"
+      [events]="calendarEvents"
+      [refresh]="refresh"
+      [weekStartsOn]="weekStartsOn"
+      [activeDayIsOpen]="activeDayIsOpen"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      (dayClicked)="dayClicked($event.day)"
+    >
+    </mwl-calendar-month-view>
+    <div
+      class="btn btn-primary"
+      mwlCalendarNextView
+      [view]="view"
+      [(viewDate)]="viewDate"
+      (viewDateChange)="closeOpenMonthViewDay()"
+    >
+      Następny
+    </div>
+  </div>
+  <div class="mobilebuttons">
+    <div
+      class="btn btn-primary mobilebutton1"
+      mwlCalendarPreviousView
+      [view]="view"
+      [(viewDate)]="viewDate"
+      (viewDateChange)="closeOpenMonthViewDay()"
+    >
+      Poprzedni
+    </div>
+    <div
+      class="btn btn-primary mobilebutton2"
+      mwlCalendarNextView
+      [view]="view"
+      [(viewDate)]="viewDate"
+      (viewDateChange)="closeOpenMonthViewDay()"
+    >
+      Następny
+    </div>
+  </div>
+</div>

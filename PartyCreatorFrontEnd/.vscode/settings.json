@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/946a86f5-4c89-4f03-bdeb-2f9855df77f2/resourceGroups/PartyCreatorProjectGroup/providers/Microsoft.Web/sites/PartyCreatorFrontEnd",
+  "appService.deploySubpath": "PartyCreatorClient\\dist\\party-creator-client"
+}

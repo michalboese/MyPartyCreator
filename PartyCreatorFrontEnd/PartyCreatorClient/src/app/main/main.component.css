@@ -1,0 +1,174 @@
+.card {
+  background-color: var(--background-main-color);
+  margin-top: 3em;
+  height: 83%;
+  width: 85%;
+  border: none;
+  margin-top: 75px;
+  overflow: auto;
+  padding-bottom: 20px;
+}
+
+body {
+  background-color: var(--background-color);  
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  color: aliceblue;
+}
+
+h1 {
+  color: var(--h1-color);
+  text-align: center;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+.container2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 2em;
+  padding-bottom: 30px;
+  padding-left: 30px;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.Event {
+  color: aliceblue;
+  font-size: 22px;
+  padding: 15px;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 10px;
+  background-color: var(--special-primary);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  place-self: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.calendarView {
+  background-color: #6a8d73;
+  width: 400px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.buttonCreateEvent {
+  background-color: var(--special-accent);
+  border-color: var(--special-accent);
+  width: 800px;
+  height: 60px;
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  border-radius: 15px;
+}
+
+.btnToDetails {
+  background-color: var(--special-accent);
+  border-color: var(--special-accent);
+  width: 50px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  float: right;
+}
+
+p {
+  color: aliceblue;
+  margin: 5px;
+}
+
+.CreateEvent {
+  /* umiejscowienie przycisku */
+  text-align: center;
+}
+.tab-label-text{
+  color:var(--label-text-color);
+}
+@media (max-width: 1400px) {
+  .calendar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 50px;
+    padding-left: 0;
+  }
+  .buttonCreateEvent {
+    margin-top: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 16px;
+    margin-top: 1em;
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+    margin-top: 50px;
+    margin-bottom: 0;
+  }
+
+  .card::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
+  .UpcomingEventsText {
+    text-align: center;
+  }
+
+  .tab-label-text {
+    display: none;
+  }
+
+  .Event {
+    width: 320px;
+    margin-bottom: 20px;
+  }
+
+  .calendarView {
+    display: none;
+  }
+  .calendar {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .calendarView {
+    width: 100%;
+  }
+
+  .CreateEvent {
+    text-align: center;
+    position: fixed;
+    bottom: 15px;
+    left: 1%;
+    right: 0;
+    z-index: 999;
+    margin-right: 10px;
+  }
+
+  .buttonCreateEvent {
+    margin-top: 0px;
+  }
+}

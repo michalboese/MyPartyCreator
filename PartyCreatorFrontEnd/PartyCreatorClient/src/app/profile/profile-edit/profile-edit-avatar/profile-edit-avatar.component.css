@@ -1,0 +1,11 @@
+.avatars {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.avatars img {
+  cursor: pointer;
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+}
